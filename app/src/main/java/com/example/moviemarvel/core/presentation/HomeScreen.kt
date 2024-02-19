@@ -33,6 +33,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.moviemarvel.movieList.presentation.MovieListUIEvent
 import com.example.moviemarvel.movieList.presentation.MovieListViewModel
+import com.example.moviemarvel.movieList.presentation.PopularMovieScreen
+import com.example.moviemarvel.movieList.presentation.UpcomingMoviesScreen
 import com.example.moviemarvel.movieList.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -56,8 +58,8 @@ fun HomeScreen(
                 title = {
                     Text(
                         text = if (movieState.isCurrentPopularScreen)
-                            "Popular"
-                        else "Upcoming",
+                            "Popular Movies"
+                        else "Upcoming Movies",
                         fontSize = 20.sp
                     )
                 },
@@ -79,16 +81,18 @@ fun HomeScreen(
                 startDestination = Screen.PopularMovieList.route
             ) {
                 composable(Screen.PopularMovieList.route) {
-//                    PopularMoviesScreen(
-//                        movieListState = movieState,
-//                        onEvent = movieListViewModel::onEvent
-//                    )
+                    PopularMovieScreen(
+                        movieListState = movieState,
+                        navController = navController,
+                        onEvent = movieListViewModel::onEvent
+                    )
                 }
                 composable(Screen.UpcomingMovieList.route) {
-//                    UpcomingMoviesScreen(
-//                        movieListState = movieState,
-//                        onEvent = movieListViewModel::onEvent
-//                    )
+                    UpcomingMoviesScreen(
+                        movieListState = movieState,
+                        onEvent = movieListViewModel::onEvent,
+                        navController = navController
+                    )
                 }
             }
         }

@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.moviemarvel.details.presentation.DetailsScreen
 import com.example.moviemarvel.movieList.presentation.MovieListViewModel
 import com.example.moviemarvel.movieList.util.Screen
 import com.example.moviemarvel.ui.theme.MovieMarvelTheme
@@ -50,20 +51,18 @@ class MainActivity : ComponentActivity() {
                                 navArgument("movieId") { type = NavType.IntType }
                             )
                         ) {
-                            navBackStackEntry ->
-//                            DetailsScreen(navBackStackEntry)
-
+                            DetailsScreen()
                         }
                     }
                 }
             }
         }
     }
-    
+
     @Composable
-    private fun SetBarColor(color: Color){
+    private fun SetBarColor(color: Color) {
         val systemUiController = rememberSystemUiController()
-        LaunchedEffect(key1 = color){
+        LaunchedEffect(key1 = color) {
             systemUiController.setStatusBarColor(color = color)
         }
     }
